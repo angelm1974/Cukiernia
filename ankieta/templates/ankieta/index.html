@@ -1,10 +1,26 @@
-<h1>Serwis wygenerowano - {{ czas }}</h1>
-{% if lista_pytan %}
-<ul>
-    {% for pytanie in lista_pytan %}
-    <li>{{ pytanie.tekst_pytania }}</li>
-    {% endfor %}
-</ul>
-{% else %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/ankieta.css' %}">
+    <title>Kawiarnia</title>
+</head>
+
+<body>
+    <h1>Serwis wygenerowano - {{ czas }}</h1>
+    {% if lista_pytan %}
+    <ul>
+        {% for pytanie in lista_pytan %}
+        <li><a href="/ankieta/{{pytanie.id}}/detale">{{ pytanie.tekst_pytania }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
     <h2>Nie ma jeszcze pytań w ankiecie</h2>
-{% endif %}
+    {% endif %}
+</body>
+
+</html>
