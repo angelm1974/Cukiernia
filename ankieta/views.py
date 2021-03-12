@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
 
 from .models import Pytanie
 # Create your views here.
 
 def index(request):
     lista_pytan = Pytanie.objects.order_by('-data_publikacji')[:5]
-    tekst = ',\n '.join([p.tekst_pytania for p in lista_pytan])
-    return HttpResponse(f'Witaj w Ankietach cukierni! {tekst}')
+    contex= {'lista_pytan' : lista_pytan,}
+    return render(request,'ankieta/index.html',contex)
 
 def detale(request, pytanie_id):
     return HttpResponse(f'Wybrałeś szczegóły pytania { pytanie_id }')

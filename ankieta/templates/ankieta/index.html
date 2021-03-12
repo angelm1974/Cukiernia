@@ -1,0 +1,9 @@
+{% if lista_pytan %}
+<ul>
+    {% for pytanie in lista_pytan %}
+    <li>{{ pytanie.tekst_pytania }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+    <h2>Nie ma jeszcze pytań w ankiecie</h2>
+{% endif %}
