@@ -1,5 +1,34 @@
+.page-header{
+    background-color: #1a0b00;
+    margin-top: 0px;
+    padding: 20px 20px 20px 30px;
+}
 h1,h2,h1 a, h2 a{
     color: #ff7300;
     margin-top: 20px;
     padding:20px;
-}  
+    font-family: 'Fascinate', cursive;
+} 
+
+.alert-warning {
+    color: #5c0300;
+    background-color: #eeb600;
+    border-color: #ad8200;
+}
+
+.alert {
+    position: relative;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .40rem;
+    width: 50%;
+    margin: 20px;
+}
+
+.alert a {
+    color: #212529;
+    text-decoration: none;
+    font-style: oblique;
+    font-weight: 900;
+}

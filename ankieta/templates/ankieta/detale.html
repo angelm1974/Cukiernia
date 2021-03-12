@@ -1,4 +1,15 @@
 {% extends "ankieta/base.html" %}
 {% block content %}
-<p>{{ pytanie.tekst_pytania }} - {{ pytanie.data_publikacji }}</p>
+
+<div class="container-fluid" style="margin-top: 20px;">
+  <div class="container overflow-hidden">
+    <div class="row gx-5">
+      <div class="col">
+       <div class="p-3 border bg-light text-center">{{ pytanie.tekst_pytania }}</div>
+      </div>
+      <div class="col">
+        <div class="p-3 border bg-light text-center">{{ pytanie.data_publikacji }}</div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
