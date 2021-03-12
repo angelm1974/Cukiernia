@@ -2,15 +2,15 @@ from django.http import Http404
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-import datetime
+
 
 from .models import Pytanie
 # Create your views here.
 
 def index(request):
-    teraz = datetime.datetime.now()
+
     lista_pytan = Pytanie.objects.order_by('-data_publikacji')[:5]
-    contex= {'lista_pytan' : lista_pytan, 'czas': teraz,}
+    contex= {'lista_pytan' : lista_pytan,}
     return render(request,'ankieta/index.html',contex)
 
 def detale(request, pytanie_id):
