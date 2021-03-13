@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Post(models.Model):
-    STATUS_CHICES = (('draft','Draft'),
-                     ('published','Published'),
+    STATUS_CHICES = (('draft','Wersja robocza'),
+                     ('published','Opublikowany'),
     )
     title = models.CharField(max_length=300)
     slug = models.SlugField(max_length=250,unique_for_date='publish')
@@ -19,7 +19,7 @@ class Post(models.Model):
     class Meta:
         verbose_name="Post"
         verbose_name_plural="Posty"
-        ordering =('-publish')
+        ordering =('-publish',)
     
     def __str__(self):
         return self.title        
