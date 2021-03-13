@@ -1,10 +1,11 @@
 from django.http import Http404
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
+from django.urls import reverse
 
 
-from .models import Pytanie
+from .models import Pytanie, Wybor
 # Create your views here.
 
 def index(request):
@@ -21,7 +22,20 @@ def detale(request, pytanie_id):
     return render(request,'ankieta/detale.html',{'pytanie':pytanie})
 
 def wyniki(request, pytanie_id):
-    return HttpResponse(f'Oglądasz wyniki głosowaniania dla pytyania  { pytanie_id }')
+    pytanie = get_object_or_404(Pytanie,pk=pytanie_id)
+    return render(request,'ankieta/wyniki.html',{'pytanie':pytanie})
 
 def glosuj(request, pytanie_id):
-    return HttpResponse(f'Głosujesz na pytanie  { pytanie_id }')
+    pytanie = get_object_or_404(Pytanie,pk=pytanie_id)
+    try:
+        wybrany=pytanie.wybor_set.get(pk=request.POST['wybor'])
+    except (KeyError, Wybor.DoesNotExist):
+        return render(request, 'ankieta/detale.html', {
+            'pytanie':pytanie, 'error_message': "Nie wybrałeś pola wyboru!!!"
+        })
+    else:
+        wybrany.glosy +=1
+        wybrany.save()
+        return HttpResponseRedirect(reverse('wyniki',args=(pytanie.id,)))
+    
+    

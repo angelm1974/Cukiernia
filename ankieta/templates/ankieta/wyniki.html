@@ -1,0 +1,9 @@
+{% extends "ankieta/base.html" %}
+{% block content %}
+{{pytanie}}
+{% for wybor in pytanie.wybor_set.all %}
+    {{wybor}} - {{ wybor.glosy }}
+{% endfor %}
+
+
+{% endblock %}
