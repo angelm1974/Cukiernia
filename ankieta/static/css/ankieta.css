@@ -49,3 +49,15 @@ h1,h2,h1 a, h2 a{
     width: 50%;
     padding-top: 20px;
 }
+
+#header {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background: #ff7e10 !important;
+    color: #000;
+    overflow: hidden;
+}
