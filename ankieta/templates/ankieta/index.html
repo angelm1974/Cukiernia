@@ -4,7 +4,7 @@
 
 {% for pytanie in lista_pytan %}
 <div class="alert alert-warning" role="alert">
-    <a href="{% url 'detale' pytanie.id %}">{{ pytanie.tekst_pytania }}</a>
+    <a href="{% url 'ankieta:detale' pytanie.id %}">{{ pytanie.tekst_pytania }}</a>
 </div>
 {% endfor %}
 

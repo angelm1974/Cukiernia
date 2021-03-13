@@ -1,3 +1,7 @@
+body {
+    background: tan url("../images/pattern.jpg") repeat;
+}
+
 .page-header{
     background-color: #1a0b00;
     margin-top: 0px;
@@ -40,4 +44,8 @@ h1,h2,h1 a, h2 a{
     font-size: .75rem;
     background-color: #e9ecef;
     border-radius: .25rem;
+}
+.boks{
+    width: 50%;
+    padding-top: 20px;
 }
