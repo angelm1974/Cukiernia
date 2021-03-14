@@ -4,7 +4,10 @@ from django.contrib.auth.models import User
 from django.urls import reverse 
 # Create your models here.
 
-    
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super(PublishedManager,self).get_queryset().filter(status='published')
+     
 
 class Post(models.Model):
     STATUS_CHICES = (('draft','Wersja robocza'),
@@ -25,10 +28,7 @@ class Post(models.Model):
                                                 self.publish.strftime('%d'),
                                                 self.slug])    
         
-    class PublishedManager(models.Manager):
-        def get_queryset(self):
-            return super(PublishedManager,self).get_queryset().filter(status='published')
-           
+          
     objects = models.Manager()
     published = PublishedManager()
     
@@ -39,3 +39,24 @@ class Post(models.Model):
     
     def __str__(self):
         return self.title        
+
+
+
+class Comment(models.Model): 
+    post = models.ForeignKey(Post,
+                             on_delete=models.CASCADE,
+                             related_name='comments')
+    name=models.CharField(max_length=80)
+    email = models. EmailField()
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=True)
+    
+    class Meta:
+        verbose_name="Komentarz"
+        verbose_name_plural="Komentarze"
+        ordering =('created',)
+    
+    def __str__(self):
+        return f'Komentarz dodany przez {self.name} do posta {self.post}'    
